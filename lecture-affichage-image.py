@@ -1,3 +1,4 @@
+from ast import For
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt 
@@ -25,9 +26,37 @@ plt.show()
 #-------------------------------------------------------------------
 
 #enlever niveau de rouge
-image_test = array_RGB[:,:,3]
-plt.imshow(image_test)
+image_r = array_RGB[:,:,0]
+image_g = array_RGB[:,:,1]
+image_b = array_RGB[:,:,2]
+
+image=array_RGB[:,:,1]
+plt.subplot(1, 1)
+plt.imshow(image)
+
+
+
+image2=array_RGB[:,:,2]
+plt.subplot(1, 2)
+plt.imshow(image2)
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+plt.show()
+
+
+
+
+
 
 random.randrange(0,255)
 
