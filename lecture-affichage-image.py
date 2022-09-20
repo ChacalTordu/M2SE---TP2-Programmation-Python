@@ -9,12 +9,13 @@ import random
 #-------------------------------------------------------------------
 
 #Question 1
-image_RGB = Image.open('mola'+'.bmp')
+image_RGB = Image.open('lena'+'.bmp')
 plt.imshow(image_RGB)
 plt.show()
 
 #Question 2
 array_RGB = np.array(image_RGB)
+print(np.shape(array_RGB))
 
 #Question 3
 image_gris = image_RGB.convert('L') 
@@ -25,19 +26,18 @@ plt.show()
 #-------------------------------EXO 2-------------------------------
 #-------------------------------------------------------------------
 
-#Question 1-2
-fig = plt.figure(figsize=(10, 7)) # creation figure
-rows = 2
-columns = 2
+#Question 1-2-3
+fig, axs = plt.subplots(1, 3, figsize=(10, 3))
+fig.suptitle('Les trois images séparés')
 
-image_test = array_RGB[:,:,1] #enlever les niveaux de couleurs
-fig.add_subplot(rows, columns, 1)
-plt.imshow(image_test)
+for i in [0,1,2]:
+    image_modified_color = array_RGB[:,:,i]
+    axs[i].imshow(image_modified_color)
 plt.show()
 
-image_test = array_RGB[:,:,2] #enlever les niveaux de couleurs
-fig.add_subplot(rows, columns, 2)
-plt.imshow(image_test)
-plt.show()
+
+#-------------------------------------------------------------------
+#-------------------------------EXO 3-------------------------------
+#-------------------------------------------------------------------
 
 random.randrange(0,255)
