@@ -1,3 +1,4 @@
+from ast import For
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt 
@@ -24,8 +25,18 @@ plt.show()
 #-------------------------------EXO 2-------------------------------
 #-------------------------------------------------------------------
 
-#enlever niveau de rouge
-image_test = array_RGB[:,:,1]
+#Question 1-2
+fig = plt.figure(figsize=(10, 7)) # creation figure
+rows = 2
+columns = 2
+
+image_test = array_RGB[:,:,1] #enlever les niveaux de couleurs
+fig.add_subplot(rows, columns, 1)
+plt.imshow(image_test)
+plt.show()
+
+image_test = array_RGB[:,:,2] #enlever les niveaux de couleurs
+fig.add_subplot(rows, columns, 2)
 plt.imshow(image_test)
 plt.show()
 
