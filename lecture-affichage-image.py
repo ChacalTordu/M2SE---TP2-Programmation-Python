@@ -20,3 +20,5 @@ plt.imshow(image_test)
 plt.show()
 
 random.randrange(0,255)
+
+#bitetest
