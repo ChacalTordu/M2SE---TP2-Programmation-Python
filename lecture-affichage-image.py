@@ -25,8 +25,9 @@ plt.show()
 #-------------------------------------------------------------------
 
 #enlever niveau de rouge
-image_test = array_RGB[:,:,1]
+image_test = array_RGB[:,:,3]
 plt.imshow(image_test)
 plt.show()
 
 random.randrange(0,255)
+
