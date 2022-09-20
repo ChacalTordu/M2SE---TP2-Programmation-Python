@@ -31,8 +31,10 @@ plt.show()
 # Nom du fichier-image original
 base = "lena.bmp"
 # Nom du fichier-image modifié
-sauvegarde = "modification.bmp"
- 
+sauvegarde = "modification_filtrerouge.bmp"
+sauvegarde1 = "modification_filtrevert.bmp"
+sauvegarde2 = "modification_filtrebleu.bmp"
+
 def modifier_image(nom , filtrage) :
     '''Fonction qui renvoie un objet-image après l'avoir filtrer pixel par pixel'''
     # Création de l'objet-image propre à Python
@@ -78,9 +80,9 @@ nouvelle2.show()
 # Sauvegarde de l'image dans un nouveau fichier-image
 nouvelle.save(sauvegarde)
 plt.show()
-nouvelle1.save(sauvegarde)
+nouvelle1.save(sauvegarde1)
 plt.show()
-nouvelle2.save(sauvegarde)
+nouvelle2.save(sauvegarde2)
 plt.show()
 
 
