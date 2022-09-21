@@ -156,6 +156,7 @@ def add_bruit_gaussien(image) :
         
     return image
 
+#-----------------------------FILTRE MOYEN-----------------------------
 def convolution2D(X,H,moitie):
     s = X.shape
     py = (H.shape[0]-1)//2
@@ -190,13 +191,26 @@ plt.show()
 
 array_gris =  np.array(image_gris)
 
+#----------------------------- FILTRE BRUIT
 image_filtre_poivre_et_sel = add_noise(array_gris)
 plt.suptitle('affichage de lena avec le filtre poivre et sel') 
 plt.imshow(image_filtre_poivre_et_sel,cmap='gray')
 plt.show()
 
+#----------------------------- FILTRE GAUSSIEN
 image_filtre_bruit_gaussien = add_bruit_gaussien(array_gris)
 plt.suptitle('affichage de lena avec le filtre avec du bruit gaussien') 
 plt.imshow(image_filtre_bruit_gaussien,cmap='gray')
 plt.show()
 
+#----------------------------- FILTRE MEDIAN (un peu long à charger)
+from scipy import ndimage
+fig = plt.figure()
+
+plt.gray()  # show the filtered result in grayscale
+ax1 = fig.add_subplot(121)  # left side
+ax2 = fig.add_subplot(122)  # right side
+result = ndimage.median_filter(image_RGB, size=20)
+ax1.imshow(image_RGB)
+ax2.imshow(result)
+plt.show()
