@@ -3,6 +3,10 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt 
 import random
+import numpy
+import math
+import imageio
+from  matplotlib.pyplot import *
 
 
 #-------------------------------------------------------------------
@@ -15,6 +19,8 @@ plt.imshow(image_RGB)
 image_programme = Image.open('lena'+'.bmp')
 plt.suptitle('Image original')
 plt.imshow(image_programme)
+
+
 plt.show()
 
 #Question 2
@@ -27,6 +33,8 @@ image_gris = image_programme.convert('L')
 plt.suptitle('grisé')
 plt.imshow(image_gris,cmap='gray')
 plt.show()
+array_gris =  np.array(image_gris)
+
 
 #-------------------------------------------------------------------
 #-------------------------------EXO 2-------------------------------
@@ -36,8 +44,7 @@ plt.show()
 
 plt.show()
 #Question 1-2-3
-fig, axs = plt.subplots(1, 3, figsize=(10, 3))
-fig.suptitle('Les trois images séparés')
+
 # Nom du fichier-image original
 base = "lena.bmp"
 # Nom du fichier-image modifié
@@ -139,8 +146,70 @@ def add_noise(img):
     return img
  
 
-image_filtre_poivre_et_sel = add_noise(array_RGB) 
-plt.imshow(image_filtre_poivre_et_sel)
+def add_bruit_gaussien(image) :
+    
+    (red,green,blue)=image_RGB.split()
+    array=numpy.array(red)
+    s=array.shape 
+    sigma=10
+    for j in range(s[0]):
+        for i in range(s[1]):
+            v = int(math.floor(array[j][i]+random.gauss(0,sigma)))
+            if v > 255:
+                v = 255
+            if v<0:
+                v = 0
+            array[j][i] = v
+        
+    return image
+
+def convolution2D(X,H,moitie):
+    s = X.shape
+    py = (H.shape[0]-1)//2
+    px = (H.shape[1]-1)//2
+    Y = X.copy()
+    if moitie:
+        imax = int(s[1]//2)
+    else:
+        imax = s[1]-px
+    for i in range(px,imax):
+        for j in range(py,s[0]-py):
+            somme = 0.0
+            for k in range(-px,px+1):
+                for l in range(-py,py+1):
+                    somme += X[j+l][i+k]*H[l+py][k+px]
+            Y[j][i] = somme
+    return Y
+
+
+red = array_RGB[:,:,0]
+
+figure(figsize=(4,4))
+X1 = red*1.0
+imshow(X1,cmap='gray')
+
+h = numpy.ones((3,3))*1.0/9
+Y = convolution2D(X1,h,False)
+figure(figsize=(4,4))
+plt.suptitle('affichage de lena avec le filtre moyen')
+plt.imshow(Y)
 plt.show()
 
+
+
+
+
+
+
+
+image_filtre_poivre_et_sel = add_noise(array_gris)
+plt.suptitle('affichage de lena avec le filtre poivre et sel') 
+plt.imshow(image_filtre_poivre_et_sel,cmap='gray')
+plt.show()
+
+
+image_filtre_bruit_gaussien = add_bruit_gaussien(array_gris)
+plt.suptitle('affichage de lena avec le filtre avec du bruit gaussien') 
+plt.imshow(image_filtre_bruit_gaussien,cmap='gray')
+plt.show()
 
