@@ -12,7 +12,6 @@ import random
 image_programme = Image.open('lena'+'.bmp')
 plt.suptitle('Image original')
 plt.imshow(image_programme)
-plt.show()
 
 #Question 2
 array_RGB = np.array(image_programme)
@@ -22,7 +21,6 @@ print(np.shape(array_RGB))
 image_gris = image_programme.convert('L') 
 plt.suptitle('grisé')
 plt.imshow(image_gris,cmap='gray')
-plt.show()
 
 #-------------------------------------------------------------------
 #-------------------------------EXO 2-------------------------------
@@ -74,20 +72,18 @@ nouvelle1 = modifier_image(base , 1)
 nouvelle2 = modifier_image(base , 2)
  
 # Affichage de l'objet-image Python à l'écran
-nouvelle.show()
-nouvelle1.show()
-nouvelle2.show()
+#nouvelle.show()
+#nouvelle1.show()
+#nouvelle2.show()
 # Sauvegarde de l'image dans un nouveau fichier-image
 nouvelle.save(sauvegarde)
-plt.show()
 nouvelle1.save(sauvegarde1)
-plt.show()
 nouvelle2.save(sauvegarde2)
-plt.show()
 
 
-#-------------------------------------------------------------------
-#-------------------------------EXO 3-------------------------------
-#-------------------------------------------------------------------
+#Inversion couleur negatife à positife
+im = np.array(Image.open('lena.bmp'))
+image_inverse = 255 - im
+# Sauvegarde de l'image inversé dans un nouveau fichier image
+Image.fromarray(image_inverse).save('lena_inverse.jpg')
 
-random.randrange(0,255)
